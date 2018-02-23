@@ -12,5 +12,6 @@ public class Lab14d
 		gd.setGrades(grad);
 		System.out.println(gd);
 		
+		
 	}
 }

@@ -20,6 +20,7 @@ public class Grades
 	public void setGrades(double[] grad)
 	{
 		grades = grad;
+		arraySize = grades.length;
 	}
 	private double getSum()
 	{
