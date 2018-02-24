@@ -1,26 +1,39 @@
 package unit8;
 
-import java.lang.System;
-import java.lang.Math;
-import java.util.Scanner;
+import java.lang.*;
+import java.util.*;
 
 public class Grades
 {
 	//instance variables
-	
-	double[] grades;
-	int arraySize;
+
+	static int arraySize;
+	static String passedGrds;
+	static double[] grades;
 
 	//constructor
 	public Grades()
 	{
 		arraySize = 0;
+		passedGrds = "";
+		
 	}
 	//set method
-	public void setGrades(double[] grad)
+	public void setGrades(int num, String grd)
 	{
-		grades = grad;
-		arraySize = grades.length;
+	  arraySize = num;
+	  passedGrds = grd;
+	  double[] grades = new double[arraySize];
+	  passedGrds = passedGrds.trim();
+	  
+	  Scanner scan = new Scanner(grd);
+	  
+	  for(int i=0;i<arraySize;i++){
+	    grades[i] = scan.nextDouble();
+	  }
+	  
+	  this.grades = grades;
+	  
 	}
 	private double getSum()
 	{
@@ -36,16 +49,14 @@ public class Grades
 	public double getAverage()
 	{
 		double average=0.0;
-		average = getSum()/grades.length;
-		
+		average = getSum()/arraySize;
 		return average;
 	}
 	public String toString()//toString method
 	{
 		String print = "";
-		
-		for(double i=0;i<grades.length;i++){
-			print = print + "grade "+ (int)i +" :: "+ grades[(int)i]+"\n";
+		for(int i=0;i<arraySize;i++){
+			print = print + "grade "+ i +" :: "+ grades[i] +"\n";
 		}
 		print = print + "\naverage = " + getAverage();
 		
