@@ -33,5 +33,13 @@ public class DeckTester {
 		Deck deck3 = new Deck(ranks3, suits3, values3);
 		System.out.println("Deck size should be 9: " + deck3.size());
 		
+		String[] ranks = {"A","2","3","5","6","7","8","9","10","J","Q","K"};
+		String[] suits = {"Clubs","Hearts","Diamonds","Spades"};
+		int[] values = {1,2,3,4,5,6,7,8,9,10,11,12,13};
+		
+		Deck deck = new Deck(ranks,suits,values);
+		deck.shuffle();
+		System.out.println("Deck shuffled. ");
+		
 	}
 }
