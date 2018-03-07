@@ -1,6 +1,7 @@
 package unit9;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * This class provides a convenient way to test shuffling methods.
@@ -86,11 +87,12 @@ public class Shuffler {
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
 		int[] cards = values;
-		for (int k=cards.length-1;k>=1;k--){
-			int r = (int)Math.random()*(k+1);
-			int temp = cards[k];
-			cards[k]=cards[r];
-			cards[r]=temp;
+		for (int k=cards.length-1;k>1;k--){
+			Random rng = new Random();
+			int r = rng.nextInt(k);
+			int temp = cards[r];
+			cards[r]=cards[k];
+			cards[k]=temp;
 		}
 		
 	}

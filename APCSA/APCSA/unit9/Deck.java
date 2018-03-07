@@ -2,6 +2,7 @@ package unit9;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -82,11 +83,12 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		for (int k=size-1;k>=1;k--){
-			int r = (int)Math.random()*(k+1);
-			Card temp = cards[k];
-			cards[k]=cards[r];
-			cards[r]=temp;
+		for (int k=size-1;k>0;k--){
+			Random rng = new Random();
+			int r = rng.nextInt(k);
+			Card temp = cards[r];
+			cards[r]=cards[k];
+			cards[k]=temp;
 		}
 		size = cards.length;
 	}
@@ -99,7 +101,7 @@ public class Deck {
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		size--;
-		if (size==0)
+		if (size==-1)
 			return null;
 		else
 			return cards[size];
