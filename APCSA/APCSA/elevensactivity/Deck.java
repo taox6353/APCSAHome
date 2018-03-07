@@ -123,9 +123,7 @@ public class Deck {
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
-
-		//Unit 9 - modify to work with Arrays
-		/*
+		
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards.get(k);
 			if (k != 0) {
@@ -148,7 +146,7 @@ public class Deck {
 				rtn = rtn + "\n";
 			}
 		}
-		*/
+		
 
 		rtn = rtn + "\n";
 		return rtn;
