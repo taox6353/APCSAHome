@@ -108,7 +108,7 @@ public class Deck {
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		size--;
-		if (size==-1)
+		if (size<=-1)
 			return null;
 		else
 			return cards.get(size);
