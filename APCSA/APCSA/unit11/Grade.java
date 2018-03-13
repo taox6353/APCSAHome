@@ -2,7 +2,7 @@ package unit11;
 
 public class Grade
 {
-	private static double value;
+	private double value;
 	//add in two constructors
 	public Grade()
 	{
@@ -14,19 +14,19 @@ public class Grade
 	}
 	//add in set and get methods
 	//double getNumericGrade()	
-	public static void setNumericGrade(double grade){
+	public void setNumericGrade(double grade){
 		value = grade;
 	}
 
-	public static double getNumericGrade(){
+	public double getNumericGrade(){
 		return value;
 	}
 	//String getLetterGrade()
-	public static void setLetterGrade(){
+	public void setLetterGrade(){
 		String LetterGrade = "E";
 	
 	}
-	public static String getLetterGrade(){
+	public String getLetterGrade(){
 		String LetterGrade = "";
 		if(value>=90.0)
 			LetterGrade = "A";
@@ -50,4 +50,3 @@ public class Grade
 		
 	}
 }
-

@@ -25,13 +25,8 @@ public class Grades
 		String throwAway = scan.next();//Takes in "-"
 		
 		for(int i=0;i<numGrades;i++){
-			//Grade g = new Grade(Double.parseDouble(scan.next()));
-			double dbl = Double.parseDouble(scan.next());
-			gradeList[i]=new Grade(dbl); //Seems to override previous numbers...is it referring to same object?
-			System.out.println(Arrays.toString(gradeList));
-			
+			gradeList[i]=new Grade(Double.parseDouble(scan.next()));
 		}
-		System.out.println(Arrays.toString(gradeList));
 		
 	}
 	public void setGrade(int spot, double gr){
@@ -60,7 +55,6 @@ public class Grades
 	public double getHighGrade(){
 		double highest = gradeList[0].getNumericGrade();
 		for(int i=1;i<gradeList.length;i++){
-			//System.out.print(highest);
 			if(gradeList[i].getNumericGrade() >= highest)
 				highest = gradeList[i].getNumericGrade();
 		}
@@ -72,12 +66,12 @@ public class Grades
 	//toString method
 	public String toString(){
 		String output = "";
-	
+		
+		for(int i=0;i<gradeList.length;i++){
+			output = output + gradeList[i].getNumericGrade() + " ";
+		}
+		
 		return output;
 	}
 
-
-
-
 }
-
