@@ -12,7 +12,5 @@ public class WordPrinter
 			 System.out.println(word);
 		 }
 
-
-
 	}
 }

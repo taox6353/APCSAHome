@@ -1,71 +1,79 @@
 package misc;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
+import static java.lang.System.*;
+import static java.util.Arrays.*;
+import java.util.ArrayList;
 
-public class Grades {
-	//instance variables
+public class Grades
+{
+	private ArrayList<Grade> gradeList;
+	//constructors
+	public Grades(){
+		gradeList.add(new Grade());
+	}
+	public Grades(String grades){
+		setGrades(grades);
+	}
 
-		static int arraySize;
-		static String passedGrds;
-		static double[] grades;
-
-		//constructor
-		public Grades(int num, String grd)
-		{
-		setGrades(num,grd);
-		  
+	public void setGrades(String values){
+		Scanner scan = new Scanner(values);
+		int numGrades = scan.nextInt();
+		
+		gradeList = new ArrayList<Grade>(numGrades);
+		
+		String throwAway = scan.next();//Takes in "-"
+		
+		System.out.println(gradeList);
+		
+		for(int i=0;i<numGrades;i++){
+			gradeList.add(i,new Grade(Double.parseDouble(scan.next())));
 		}
-		//set method
-		public void setGrades(int num, String grd)
-		{
-		  arraySize = num;
-		  passedGrds = grd;
-		  grades = new double[arraySize];
-		  passedGrds = passedGrds.trim();
-		  
-		  Scanner scan = new Scanner(passedGrds);
-		  
-		  if(scan.hasNextDouble()){
-			    for(int i=0;i<arraySize;i++){
-			    grades[i] = scan.nextDouble();
-			  }
-			  }
-			  else{
-			    for(int i=0;i<arraySize;i++){
-			    grades[i] = scan.nextInt();
-			  }
-			  }
-		  
-		  //grades = grades1;
-		  //System.out.println(grades);
-		  
+		
+	}
+	public void setGrade(int spot, double gr){
+		
+		Grade g = new Grade(gr);
+		gradeList.set(spot, g);
+		
+	}
+	public double getSum(){
+		double sum = 0.0;
+		for(int i=0;i<gradeList.size();i++){
+			sum = sum + gradeList.get(i).getNumericGrade();
 		}
-		private double getSum()
-		{
-			double sum=0.0;
+		
+		return sum;
+	}
+	public double getLowGrade(){
+		double lowest = gradeList.get(0).getNumericGrade();
+		for(int i=1;i<gradeList.size();i++){
+			if(gradeList.get(i).getNumericGrade() <= lowest)
+				lowest = gradeList.get(i).getNumericGrade();
 			
-			for(int i=0;i<grades.length;i++){
-				sum = sum + grades[i];
-			}
-
-			return sum;
 		}
-
-		public double getAverage()
-		{
-			double average=0.0;
-			average = getSum()/arraySize;
-			return average;
+		return lowest;
+	}
+	public double getHighGrade(){
+		double highest = gradeList.get(0).getNumericGrade();
+		for(int i=1;i<gradeList.size();i++){
+			if(gradeList.get(i).getNumericGrade() >= highest)
+				highest = gradeList.get(i).getNumericGrade();
 		}
-		public String toString()//toString method
-		{
-			String print = "";
-			for(int i=0;i<arraySize;i++){
-			  //System.out.println(grades);
-				print = print + "grade "+ i +" :: "+ grades[i] +"\n";
-			}
-			print = print + "\naverage = " + getAverage();
-			
-			return print;
+		return highest;
+	}
+	public int getNumGrades(){
+		return gradeList.size();
+	}
+	//toString method
+	public String toString(){
+		String output = "";
+		
+		for(int i=0;i<gradeList.size();i++){
+			output = output + gradeList.get(i).getNumericGrade() + " ";
 		}
+		
+		return output;
+	}
 }
