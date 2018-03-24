@@ -24,7 +24,15 @@ public abstract class Board {
 	 * Flag used to control debugging print statements.
 	 */
 	private static final boolean I_AM_DEBUGGING = false;
-
+	
+	
+	/**
+	 * Creates a new Board instance with null or zero values.
+	 */
+	public Board(){
+		cards = new Card[0];
+	}
+	
 	/**
 	 * Creates a new <code>Board</code> instance.
 	 * @param size the number of cards in the board
