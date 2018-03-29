@@ -9,11 +9,17 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
+import java.util.Timer;
 import java.awt.event.ActionListener;
 
-public class Pong extends Canvas implements KeyListener, Runnable
+public class Pong extends Canvas implements KeyListener, Runnable 
+/*Entire class is made so that with each ball type, game ball can be quickly interchanged. 
+Be sure to change all instances before running.  Currently set to BlinkyBall. */
 {
-	private Ball ball;
+//	private Ball ball;
+//	private SpeedUpBall ball;
+	private BlinkyBall ball;
+//	private InvisibleBall ball;
 	private Paddle leftPaddle;
 	private Paddle rightPaddle;
 	private boolean[] keys;
@@ -28,7 +34,11 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	public Pong()
 	{
 		//set up all variables related to the game
-		ball = new Ball(100,100,25,25,Color.CYAN,2,2);
+//		ball = new Ball(100,100,25,25,Color.CYAN,2,2);
+//		ball = new SpeedUpBall(100,100,25,25,Color.CYAN,2,2);
+		ball = new BlinkyBall(100,100,25,25,Color.CYAN,2,2);
+//		ball = new InvisibleBall(100,100,25,25,Color.CYAN,2,2);
+		
 		leftPaddle = new Paddle(10,100,20,60,Color.RED,5);
 		rightPaddle = new Paddle(750,100,20,60,Color.RED,5);
 		left = new Wall(0,0,10,600);
@@ -75,26 +85,42 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.GREEN);
 		graphToBack.drawString("Left Score: "+leftscore, 50, 50);
 		graphToBack.drawString("Right Score: "+rightscore, 50, 80);
-
-
+		
+		//Only usable with InvisibleBall--DOES NOT WORK :(
+//		if(ball.isInvisible()==false){
+//			long current = System.currentTimeMillis();
+//			long stime = current+(int)(Math.random()*10000);
+//			long etime = stime+(int)(Math.random()*10000);
+//			do{
+//				ball.goInvisible(graphToBack);
+//				System.out.print(ball.isInvisible());
+//			}while(System.currentTimeMillis()>stime&&System.currentTimeMillis()<etime);
+//			
+//			if(etime<System.currentTimeMillis())
+//				ball.backVisible(graphToBack);
+//		}
+		
+		
 		//see if ball hits left wall or right wall
 		if(!((ball.getX()>=left.getX()+left.getWidth())&&(ball.getX()<=right.getX()-right.getWidth())))
 		{
 			if(!(ball.getX()>=left.getX()+left.getWidth())){
-				leftscore++;
-				graphToBack.setColor(Color.WHITE);
-				graphToBack.drawString("Left Score: "+(leftscore-1), 50, 50);
-				graphToBack.setColor(Color.GREEN);
-				graphToBack.drawString("Left Score: "+leftscore, 50, 50);
-				ball.setXSpeed(-ball.getXSpeed());
-			}
-			if(!(ball.getX()<=right.getX()-right.getWidth())){
 				rightscore++;
 				graphToBack.setColor(Color.WHITE);
 				graphToBack.drawString("Right Score: "+(rightscore-1), 50, 80);
 				graphToBack.setColor(Color.GREEN);
 				graphToBack.drawString("Right Score: "+rightscore, 50, 80);
 				ball.setXSpeed(-ball.getXSpeed());
+				ball.setYSpeed(ball.getYSpeed());//Does nothing for normal ball but speeds up for SpeedUpBall
+			}
+			if(!(ball.getX()<=right.getX()-right.getWidth())){
+				leftscore++;
+				graphToBack.setColor(Color.WHITE);
+				graphToBack.drawString("Left Score: "+(leftscore-1), 50, 50);
+				graphToBack.setColor(Color.GREEN);
+				graphToBack.drawString("Left Score: "+leftscore, 50, 50);	
+				ball.setXSpeed(-ball.getXSpeed());
+				ball.setYSpeed(ball.getYSpeed());
 			}
 		}
 		//see if the ball hits the top or bottom wall 
@@ -126,12 +152,12 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		}
 		//see if the ball hits the left paddle
 		if(ball.didCollideLeft(leftPaddle)){
-			ball.setYSpeed(-ball.getYSpeed());
+			ball.setYSpeed(ball.getYSpeed());
 			ball.setXSpeed(-ball.getXSpeed());
 			}
 		//see if the ball hits the right paddle
 		if(ball.didCollideRight(rightPaddle)){
-			ball.setYSpeed(-ball.getYSpeed());
+			ball.setYSpeed(ball.getYSpeed());
 			ball.setXSpeed(-ball.getXSpeed());
 			}
 

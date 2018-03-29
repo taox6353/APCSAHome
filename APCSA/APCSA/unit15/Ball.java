@@ -26,11 +26,25 @@ public class Ball extends Block implements Collidable
 		xSpeed = 3;
 		ySpeed = 1;
 	}
+	public Ball(int x, int y,int h){
+		super(x,y);
+		setWidth(10);
+		setHeight(h);
+		setColor(Color.BLACK);
+		xSpeed = 3;
+		ySpeed = 1;
+	}
 	public Ball(int x,int y,int w,int h){
 		super(x,y,w,h);
 		setColor(Color.BLACK);
 		xSpeed = 3;
 		ySpeed = 1;
+	}
+	public Ball(int x,int y,int w,int h,int xS,int yS){
+		super(x,y,w,h);
+		setColor(Color.BLACK);
+		xSpeed = xS;
+		ySpeed = yS;
 	}
 	public Ball(int x,int y,int w,int h,Color col){
 		super(x,y,w,h,col);

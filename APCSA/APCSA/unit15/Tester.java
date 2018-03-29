@@ -23,9 +23,9 @@ public class Tester extends JFrame
 //		getContentPane().add(new PaddleTestTwo());//padTest);
 		
 		//uncomment to test pong
-//		Pong pong = new Pong();
-//		((Component)pong).setFocusable(true);			
-//		getContentPane().add(pong);
+		Pong pong = new Pong();
+		((Component)pong).setFocusable(true);			
+		getContentPane().add(pong);
 		
 		//uncomment to test breakout
 //		BreakOut bo = new BreakOut();
@@ -33,10 +33,9 @@ public class Tester extends JFrame
 //		getContentPane().add(bo);
 		
 		//uncomment to test airhockey
-		AirHockey ah = new AirHockey();
-		((Component)ah).setFocusable(true);			
-		getContentPane().add(ah);
-		
+//		AirHockey ah = new AirHockey();
+//		((Component)ah).setFocusable(true);	
+//		getContentPane().add(ah);
 		
 				
 		setVisible(true);
