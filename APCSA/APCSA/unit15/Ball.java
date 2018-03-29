@@ -3,7 +3,7 @@ package unit15;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -70,6 +70,78 @@ public class Ball extends Block
       window.setColor(getColor());
 	  window.fillOval(getX(),getY(),getWidth(),getHeight());
    }
+   
+   public boolean didCollideLeft(Object obj){
+	   Paddle p = (Paddle)obj;
+	   //see if the ball hits the left paddle
+	 		if((getX()<=p.getX()+p.getWidth()+Math.abs(getXSpeed()))
+	 				&&(getY()>=p.getY()
+	 				&&(getY()<=p.getY()+p.getHeight())
+	 				||(getY()+getHeight()>=p.getY())
+	 				&&(getY()+getHeight()<p.getY()+p.getHeight())))
+	 		{	
+	 			if(getX()<=p.getX()+p.getWidth()-Math.abs(getXSpeed())){
+	 				return true;
+	 			}
+	 			else
+	 				return false;
+	 		}
+	 		else
+	 			return false;
+   }
+   public boolean didCollideRight(Object obj){
+	   Paddle p = (Paddle)obj;
+	   //see if the ball hits the right paddle
+	   if((getX()>=p.getX()-p.getWidth()-Math.abs(getXSpeed()))
+				&&(getY()>=p.getY()
+				&&(getY()<=p.getY()+p.getHeight())
+				||(getY()+getHeight()>=p.getY())
+				&&(getY()+getHeight()<p.getY()+p.getHeight())))
+		{
+			if(getX()>=p.getX()-p.getWidth()+Math.abs(getXSpeed())){
+				return true;
+			}
+			else
+				return false;
+		}
+	   else
+		   return false;
+   }
+   public boolean didCollideTop(Object obj){
+	   Wall n = (Wall)obj;
+	   if(!(getY()>=n.getY()+n.getHeight()))
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollideBottom(Object obj){
+	   Wall n = (Wall)obj;
+	   if(!(getY()<=n.getY()-n.getHeight()))
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollidePaddle(Object obj){
+	   Paddle n = (Paddle)obj;
+	   if(getY()>=n.getY()&&getX()>=n.getX()&&getX()<=n.getX()+n.getWidth()&&getY()<=n.getY()+n.getHeight())
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollideBlock(Object obj){
+	   Block n = (Block)obj;
+	   if(getY()>=n.getY()-10&&getY()<=n.getY()+n.getHeight()+10&&getX()>=n.getX()-10&&getX()<=n.getX()+n.getWidth()+10)
+			return true;
+	   else
+		   return false;
+   }
+   public void remove(Graphics window){
+	   window.setColor(Color.WHITE);
+	   window.fillOval(getX(), getY(), getWidth(), getHeight());
+   }
+   
+   
+   
    
 	public boolean equals(Object obj)
 	{

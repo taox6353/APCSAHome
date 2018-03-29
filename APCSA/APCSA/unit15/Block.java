@@ -89,7 +89,7 @@ public class Block implements Locatable
    public void draw(Graphics window)
    {
    	//uncomment after you write the set and get methods
-      window.setColor(color);
+      window.setColor(getColor());
       window.fillRect(getX(), getY(), getWidth(), getHeight());
    }
    public void draw(Graphics window, Color col)
@@ -98,6 +98,11 @@ public class Block implements Locatable
 	   window.setColor(color);
 	   window.fillRect(getX(), getY(), getWidth(), getHeight());
    }
+   public void remove(Graphics window){
+	   window.setColor(Color.WHITE);
+	   window.fillRect(getX(), getY(), getWidth(), getHeight());
+   }
+   
    
 	public boolean equals(Object obj)
 	{
@@ -107,6 +112,7 @@ public class Block implements Locatable
 		else		
 			return false;
 	}   
+	
    //add a toString() method  - x , y , width, height, color
 	public String toString(){
 		String output = getX()+" "+getY()+" "+getWidth()+" "+getHeight()+" "+getColor();

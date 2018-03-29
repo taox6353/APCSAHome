@@ -65,10 +65,66 @@ public class Paddle extends Block
       window.setColor(getColor());
 	  window.fillRect(getX(),getY(),getWidth(),getHeight());
    }
+   public void moveRightAndDraw(Graphics window)
+   {
+	   window.setColor(Color.WHITE);
+	   window.fillRect(getX(),getY(),getWidth(),getHeight());
+	   
+		//paddle moves right
+      setX(getX()+speed);
+		//draw the paddle at its new location
+      window.setColor(getColor());
+	  window.fillRect(getX(),getY(),getWidth(),getHeight());
+   }
+   public void moveLeftAndDraw(Graphics window)
+   {
+	   window.setColor(Color.WHITE);
+	   window.fillRect(getX(),getY(),getWidth(),getHeight());
+	   
+		//paddle moves left
+      setX(getX()-speed);
+		//draw the paddle at its new location
+      window.setColor(getColor());
+	  window.fillRect(getX(),getY(),getWidth(),getHeight());
+   }
+   
+   public boolean didCollideTop(Object obj){
+	   Wall n = (Wall)obj;
+	   if(getY()<=n.getY()+n.getHeight())
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollideBottom(Object obj){
+	   Wall n = (Wall)obj;
+	   if(getY()>=n.getY()-n.getHeight())
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollideLeft(Object obj){
+	   Wall n = (Wall)obj;
+	   if(getX()<=n.getX()+n.getWidth())
+			return true;
+	   else
+		   return false;
+   }
+   public boolean didCollideRight(Object obj){
+	   Wall n = (Wall)obj;
+	   if(getX()>=n.getX()-n.getWidth())
+			return true;
+	   else
+		   return false;
+   }
 
    //add get methods
    public int getSpeed(){
 	   return speed;
+   }
+   
+   //setter
+   public void setSpeed(int i){
+	   speed = i;
    }
    
    //add a toString() method
